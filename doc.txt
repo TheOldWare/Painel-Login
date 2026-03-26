@@ -1,0 +1,87 @@
+# ================================================
+# DOCUMENTAÇÃO - CUSTOMTKINTER
+# ================================================
+
+import customtkinter as ctk
+# Importa a biblioteca CustomTkinter (apelidada de "ctk" para facilitar)
+
+
+# ==================== CONFIGURAÇÃO DE TEMA ====================
+
+ctk.set_appearance_mode("dark")
+# Define o tema geral da aplicação
+# Opções comuns: "dark", "light", "dark-blue", "blue", "green", etc.
+
+# Exemplo:
+# ctk.set_appearance_mode("dark-blue")  → deixa o tema em azul escuro
+
+
+# ==================== CRIAÇÃO DA JANELA PRINCIPAL ====================
+
+app = ctk.CTk()
+# Cria a janela principal da aplicação
+
+app.title("Minha Aplicação")
+# Define o título da janela
+
+app.geometry("400x400")
+# Define o tamanho da janela (largura x altura)
+
+
+# ==================== CRIAÇÃO DOS CAMPOS ====================
+
+# Label (Texto explicativo)
+usuario_painel = ctk.CTkLabel(app, text="Usuário")
+# Cria um texto na janela
+usuario_painel.pack(pady=10)
+# .pack() adiciona o widget na janela
+# pady = espaçamento vertical (cima e baixo)
+
+
+# Entry (Caixa de texto)
+usuario_text = ctk.CTkEntry(app, placeholder_text="Email")
+# Cria uma caixa de texto com texto instrutivo (placeholder)
+usuario_text.pack(pady=10)
+
+
+# Senha
+senha_painel = ctk.CTkLabel(app, text="Senha")
+senha_painel.pack(pady=10)
+
+senha_texto = ctk.CTkEntry(app, placeholder_text="Sua senha", show="*")
+# show="*" faz com que os caracteres apareçam como asteriscos (para senha)
+senha_texto.pack(pady=10)
+
+
+# ==================== BOTÃO ====================
+
+botao_login = ctk.CTkButton(app, text="Login", command=validar_login)
+# Cria um botão
+# command= define qual função será executada quando clicar no botão
+botao_login.pack(pady=10)
+
+
+# ==================== CAMPO DE FEEDBACK ====================
+
+resultado = ctk.CTkLabel(app, text="")
+# Label vazio que será usado para mostrar mensagem de sucesso ou erro
+resultado.pack(pady=10)
+
+
+# ==================== FUNÇÃO DE VALIDAÇÃO ====================
+
+def validar_login():
+    user = usuario_text.get()      # Pega o texto digitado no campo de usuário
+    senha = senha_texto.get()      # Pega o texto digitado no campo de senha
+
+    if user == "ware" and senha == "12345":
+        resultado.configure(text="Login sucedido!", text_color="green")
+    else:
+        resultado.configure(text="Login errado!", text_color="red")
+
+
+# ==================== INICIAR APLICAÇÃO ====================
+
+app.mainloop()
+# Inicia o loop da janela (mantém a aplicação rodando)
+# Sem essa linha, a janela abre e fecha imediatamente
